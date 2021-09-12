@@ -7,6 +7,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
+import 'package:generyc/screens/recording.dart';
 import './widgets.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class FlutterBlueApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       color: Colors.lightBlue,
+      // home: Recording(),
       home: StreamBuilder<BluetoothState>(
           stream: FlutterBlue.instance.state,
           initialData: BluetoothState.unknown,
@@ -97,7 +99,7 @@ class FindDevicesScreen extends StatelessWidget {
                             onPressed: () => Navigator.of(context).push(
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        DeviceScreen(device: d))),
+                                        Recording())),
                           );
                         }
                         return Text(snapshot.data.toString());
@@ -118,7 +120,7 @@ class FindDevicesScreen extends StatelessWidget {
                       onTap: () => Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
                         r.device.connect();
-                        return DeviceScreen(device: r.device);
+                        return Recording();
                       })),
                     ),
                   )
